@@ -7,9 +7,20 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/', (req, res) => {
     retornoApi = dados.getData(req.body.cityName)
-    retornoApi.then((resposnse) => {
+    retornoApi.then((resposta) => {
         //console.log(res.data) //O .data pega apenas os dados da cidade passada
-        res.send(resposnse.data)
+        // res.send(resposta.data)
+        const response = {
+            dados: {
+                cidade: resposta.data.name,
+                pais: resposta.data.sys.country,
+                temperatura: resposta.data.main.temp,
+                umidade: resposta.data.main.humidity,
+                clima: resposta.data.weather
+            }
+        }
+
+        return res.status(200).send(response)
     }).catch((err) => { //Em caso de erro...
         if(err){
             console.error(err) //mostre o erro
