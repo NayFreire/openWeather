@@ -8,8 +8,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/', (req, res) => {
     retornoApi = dados.getData(req.body.cityName)
     retornoApi.then((resposta) => {
-        //console.log(res.data) //O .data pega apenas os dados da cidade passada
-        // res.send(resposta.data)
+        //res.send(resposta.data)
         const response = {
             dados: {
                 cidade: resposta.data.name,
@@ -24,6 +23,10 @@ app.use('/', (req, res) => {
     }).catch((err) => { //Em caso de erro...
         if(err){
             console.error(err) //mostre o erro
+            return res.send({
+                message: 'Erro ao buscar cidade',
+                error: err
+            })
         }
     })
     //* Eu preciso do .then, pois dados se torna uma promise. Como a requisição de dados da api é uma operação assíncrona.  Isto permite que métodos assíncronos retornem valores como métodos síncronos: ao invés do valor final, o método assíncrono retorna uma promessa ao valor em algum momento no futuro.
