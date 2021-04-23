@@ -6,7 +6,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/', (req, res) => {
-    console.log(req.body.cityName)
     retornoApi = dados.getData(req.body.cityName)
     retornoApi.then((resposnse) => {
         //console.log(res.data) //O .data pega apenas os dados da cidade passada
