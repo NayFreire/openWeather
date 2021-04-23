@@ -1,0 +1,9 @@
+{
+    "env":{
+        "PGUSER": "postgres",
+        "PGPASSW": "postgres",
+        "PGHOST": "localhost",
+        "PGPORT": 5432,
+        "PGDATABASE": "weather"
+    }
+}

@@ -1,6 +1,20 @@
 const express = require('express')
 const dados = require('./index') //Importando os dados do index.js
 const app = express()
+const Client = require('pg').Client
+const cliente = new Client({
+                            user: process.env.PGUSER,
+                            password: process.env.PGPASSW,
+                            host: process.env.PGHOST,
+                            port: process.env.PGPORT,
+                            database: process.env.PGDATABASE
+})
+
+cliente.connect()
+cliente.query('SELECT * FROM cidades').then(resultado => {
+    const result = resultado.rows
+    console.log(result)
+}).finally(() => cliente.end())
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
