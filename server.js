@@ -24,6 +24,7 @@ app.set('view engine', 'handlebars')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
+app.use(express.static("."));
 
 // app.use('/', (req, res) => {
     
@@ -48,7 +49,7 @@ app.get('/', (req, res) => {
 
         // return res.status(200).send(response)
         console.log(response)
-        res.render('index', {data: response})
+        res.render('index', {data: response.dados})
     }).catch((err) => { //Em caso de erro...
         if(err){
             console.error(err) //mostre o erro
