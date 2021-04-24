@@ -1,5 +1,4 @@
 var axios = require('axios')
-var norm = require('normalize-strings');
 
 // var city = 'Ouro Fino'
 
@@ -11,10 +10,11 @@ var key = "05906a229847de9e3d68f7fcc153dff8"
 var cityName
 exports.getData = (cityName) => {
     var dados
+    cityName = 'Ouro Fino'
     console.log(cityName)
-    var city = norm(cityName)
-    console.log(city)
-    function cities(){
+    var city = cityName.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+    
+    function cities() {
         return axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
     }
 
