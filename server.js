@@ -1,6 +1,8 @@
 const express = require('express')
-const dados = require('./index') //Importando os dados do index.js
 const app = express()
+const dados = require('./index') //Importando os dados do index.js
+const handlebars = require('express-handlebars')
+
 const Client = require('pg').Client
 const cliente = new Client({
                             user: process.env.PGUSER,
@@ -16,11 +18,16 @@ cliente.query('SELECT * FROM cidades').then(resultado => {
     console.log(result)
 }).finally(() => cliente.end())
 
+//Configurando o template engine do express
+app.engine('handlebars', handlebars({defaultLayout: 'main'}))
+app.set('view engine', 'handlebars')
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/', (req, res) => {
     retornoApi = dados.getData(req.body.cityName)
+    
     retornoApi.then((resposta) => {
         //res.send(resposta.data)
         const response = {
