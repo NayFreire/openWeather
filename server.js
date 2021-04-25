@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
-app.post('/clima', (req, res) => {
+app.post('/', (req, res) => {
     var response = []
     console.log(req.body.cityName)
     retornoApi = dados.getData(req.body.cityName)
@@ -62,10 +62,7 @@ app.post('/clima', (req, res) => {
         }).catch((err) => { //Em caso de erro...
             if(err){
                 console.error(err) //mostre o erro
-                return res.send({
-                    message: 'Erro ao buscar cidade',
-                    error: err
-                })
+                return res.send("Erro")
             }
         })
         //* Eu preciso do .then, pois dados se torna uma promise. Como a requisição de dados da api é uma operação assíncrona.  Isto permite que métodos assíncronos retornem valores como métodos síncronos: ao invés do valor final, o método assíncrono retorna uma promessa ao valor em algum momento no futuro.

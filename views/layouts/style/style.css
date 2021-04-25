@@ -1,6 +1,15 @@
 html{
     /* background-color: yellowgreen; */
-    margin: 0 auto;
+    /* padding: 50px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: springgreen;
 }
 
 .historico{
@@ -42,4 +51,8 @@ html{
     height: 40px;
     margin-left: 10px;
     font-size: 16pt;
+}
+
+#dadosClima{
+    padding: 10px 30px;
 }
