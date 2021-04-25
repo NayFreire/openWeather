@@ -7,11 +7,14 @@ var axios = require('axios')
         .then((res) => {console.log(res.data)})
         .catch(err => console.error(err))*/
 var key = "05906a229847de9e3d68f7fcc153dff8"      
-var cityName
+
 exports.getData = (cityName) => {
     var dados
-    cityName = 'Ouro Fino'
-    console.log(cityName)
+    if(cityName == undefined){
+        return 0
+    }
+    // cityName = 'Ouro Fino'
+    console.log('cityName: ' + cityName)
     var city = cityName.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
     
     function cities() {

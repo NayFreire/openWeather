@@ -9,11 +9,32 @@
 {{/data}} --}}
 
 <h1>Temperatura Aqui</h1>
-<div class="container-lg d-flex">
-    <div class="col-md-5 historico">
+<div class="container d-flex">
+    <div class="col-md-6 historico">
         <h2>historico</h2>
     </div>
-    <div class="col-md-5 busca">
-        <h2>busca</h2>
+    <div class="col-md-6 busca">
+        {{!-- <h2>busca</h2> --}}
+        <div id="divBuscaCidade">
+            <form action="/clima" method="post">
+                <div id="divLabelBusca" class="divCidade">
+                <h3 style="text-align: center;">Saiba mais sobre o clima de várias cidades</h3>
+                </div>
+                <div id="divInputBusca" class="divCidade">
+                    <input id="inputBusca" type="text" placeholder="Nome da cidade" name="cityName">
+                    <button id="btnInputBusca" type="submit">Buscar</button>
+                </div>
+                <div>
+                    {{#data}}
+                        <label for="">Nome da Cidade: {{cidade}}</label><br>
+                        <label for="">País: {{pais}}</label><br>
+                        <label for="">Temperatura: {{temperatura}}</label><br>
+                        <label for="">Umidade: {{umidade}}</label><br>
+                        <label for="">Clima principal: {{climaPrincipal}}</label><br>
+                        <label for="">Descrição do clima: {{climaDesc}}</label><br>
+                    {{/data}}
+                </div>
+            </form>
+        </div>
     </div>
 </div>

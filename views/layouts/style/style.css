@@ -1,11 +1,45 @@
-html, body{
-    background-color: yellowgreen;
+html{
+    /* background-color: yellowgreen; */
+    margin: 0 auto;
 }
 
 .historico{
-    background-color: black;
+    background-color: rgb(189, 59, 59);
+    padding: 30px;
 }
 
 .busca{
     background-color: violet;
+    margin-left: 10px;
+    padding: 30px;
+}
+
+#divBuscaCidade{
+    background-color: burlywood;
+}
+
+.divCidade{
+    background-color: springgreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#divLabelBusca{
+    margin-bottom: 10px;
+}
+
+#inputBusca{
+    width: 70%;
+    height: 40px;
+    padding: 5px;
+    font-size: 16pt;
+    border-radius: 5px;
+    border: none;
+}
+
+#btnInputBusca{
+    height: 40px;
+    margin-left: 10px;
+    font-size: 16pt;
 }

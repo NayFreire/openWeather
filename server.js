@@ -31,36 +31,45 @@ app.use(express.static("."));
 // })
 
 app.get('/', (req, res) => {
-    var response = []
-    retornoApi = dados.getData(req.body.cityName)
-    
-    retornoApi.then((resposta) => {
-        //res.send(resposta.data)
-        response = {
-            dados: {
-                cidade: resposta.data.name,
-                pais: resposta.data.sys.country,
-                temperatura: resposta.data.main.temp,
-                umidade: resposta.data.main.humidity,
-                climaPrincipal: resposta.data.weather[0].main,
-                climaDesc: resposta.data.weather[0].description
-            }
-        }
+    res.render('index')
+})
 
-        // return res.status(200).send(response)
-        console.log(response)
-        res.render('index', {data: response.dados})
-    }).catch((err) => { //Em caso de erro...
-        if(err){
-            console.error(err) //mostre o erro
-            return res.send({
-                message: 'Erro ao buscar cidade',
-                error: err
-            })
-        }
-    })
-    //* Eu preciso do .then, pois dados se torna uma promise. Como a requisição de dados da api é uma operação assíncrona.  Isto permite que métodos assíncronos retornem valores como métodos síncronos: ao invés do valor final, o método assíncrono retorna uma promessa ao valor em algum momento no futuro.
+app.post('/clima', (req, res) => {
+    var response = []
+    console.log(req.body.cityName)
+    retornoApi = dados.getData(req.body.cityName)
+    console.log(retornoApi)
+    if(retornoApi == 0){
+        res.render('index')
+    }
+    else{
+        retornoApi.then((resposta) => {
+            //res.send(resposta.data)
+            response = {
+                dados: {
+                    cidade: resposta.data.name,
+                    pais: resposta.data.sys.country,
+                    temperatura: resposta.data.main.temp,
+                    umidade: resposta.data.main.humidity,
+                    climaPrincipal: resposta.data.weather[0].main,
+                    climaDesc: resposta.data.weather[0].description
+                }
+            }
     
+            // return res.status(200).send(response)
+            console.log(response)
+            res.render('index', {data: response.dados})
+        }).catch((err) => { //Em caso de erro...
+            if(err){
+                console.error(err) //mostre o erro
+                return res.send({
+                    message: 'Erro ao buscar cidade',
+                    error: err
+                })
+            }
+        })
+        //* Eu preciso do .then, pois dados se torna uma promise. Como a requisição de dados da api é uma operação assíncrona.  Isto permite que métodos assíncronos retornem valores como métodos síncronos: ao invés do valor final, o método assíncrono retorna uma promessa ao valor em algum momento no futuro.
+    }
 })
 
 app.listen(5050, () => {
