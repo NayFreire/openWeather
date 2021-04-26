@@ -21,10 +21,10 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     var response = []
-    // console.log(req.body.cityName)
+    
     retornoApi = dados.getData(req.body.cityName)
+    topCinco = queriesCity.findAll()
 
-    // console.log(retornoApi)
     if(retornoApi == 0){
         res.render('index')
     }
@@ -43,32 +43,10 @@ app.post('/', (req, res) => {
                 }
             }
     
-            // return res.status(200).send(response)
-            // console.log(response)
             console.log("Nome da cidade: " + response.dados.nome)
-            // var qtdRegistros = queriesCity.findAll(response.dados.nome)
-            // console.log('FOI PESQUISADO?????' + qtdRegistros)
-
-            // qtdRegistros.then((noBanco) => {
-            //     const dados = {
-            //         retorno: {
-            //             achado: noBanco.retorno
-            //         }
-            //     }
-            //     console.log("ACHADO??" + dados.retorno.achado)
-            //     if(dados.retorno.achado){
-            //         console.log('***JÁ FOI INSERIDO***')
-            //     }
-            //     else{
-            //         console.log('***AINDA NÃO INSERIDO***')
-                    queriesCity.findOrCreat(response)
-                // }
-                res.render('index', {data: response.dados})
-            // }).catch((err) => {
-            //     console.log("Erro ao confirmar se uma cidade já foi cadastrada: " + err)
-            // })
-
+            queriesCity.findOrCreat(response)
             
+            res.render('index', {data: response.dados})
         }).catch((err) => { //Em caso de erro...
             if(err){
                 console.error(err) //mostre o erro
