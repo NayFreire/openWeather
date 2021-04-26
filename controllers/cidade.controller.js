@@ -52,19 +52,25 @@ exports.findAll = (nome) => {
 
 exports.findOrCreat = async (dadosCidade) => {
     const [cidade, created] = await Cidade.findOrCreate({
-        where: { nome: dadosCidade.dados.nome },
+        where: {nome: dadosCidade.dados.nome},
         defaults: {  
             pais: dadosCidade.dados.pais, 
             temperatura: dadosCidade.dados.temperatura, 
             umidade: dadosCidade.dados.umidade, 
             climaprincipal: dadosCidade.dados.climaprincipal,
             climadescricao: dadosCidade.dados.climadescricao,
-            numbuscas: 1
+            numbuscas: dadosCidade.dados.numbuscas
         }
     });
     console.log(cidade.nome); // 'sdepold'
     console.log(cidade.pais); // This may or may not be 'Technical Lead JavaScript'
     console.log(cidade.temperatura); // This may or may not be 'Technical Lead JavaScript'
+    console.log(cidade.numbuscas)
 
     console.log(created); // The boolean indicating whether this instance was just created
+    if(!created){
+        await Cidade.update({ numbuscas: dadosCidade.dados.numbuscas + 1 }, {
+            where: {nome: dadosCidade.dados.nome}
+        });
+    }
 }
