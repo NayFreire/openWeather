@@ -18,7 +18,7 @@ exports.getData = (cityName) => {
     var city = cityName.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
     
     function cities() {
-        return axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
+        return axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&&lang=pt_br&appid=${key}`)
     }
 
     dados = cities()

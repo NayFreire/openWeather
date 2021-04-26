@@ -40,19 +40,28 @@ html{
 
 #inputBusca{
     width: 70%;
-    height: 40px;
+    height: 35px;
     padding: 5px;
-    font-size: 16pt;
-    border-radius: 5px;
+    font-size: 14pt;
+    border-radius: 10px;
     border: none;
 }
 
 #btnInputBusca{
-    height: 40px;
+    height: 35px;
     margin-left: 10px;
-    font-size: 16pt;
+    font-size: 14pt;
 }
 
 #dadosClima{
     padding: 10px 30px;
+}
+
+.cityData{
+    display: flex;
+}
+
+.atributo{
+    margin-right: 10px;
+    font-weight: 600;
 }
