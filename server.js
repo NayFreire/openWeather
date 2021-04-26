@@ -46,17 +46,29 @@ app.post('/', (req, res) => {
             // return res.status(200).send(response)
             // console.log(response)
             console.log("Nome da cidade: " + response.dados.nome)
-            qtdRegistros = queriesCity.findAll(response.dados.nome)
-            console.log('FOI PESQUISADO?????' + qtdRegistros)
+            // var qtdRegistros = queriesCity.findAll(response.dados.nome)
+            // console.log('FOI PESQUISADO?????' + qtdRegistros)
 
-            if(qtdRegistros > 0){
-                console.log('***PESQUISADO***')
-            }
-            else{
-                console.log('***NÃO PESQUISADO***')
-                queriesCity.create(response)
-            }
-            res.render('index', {data: response.dados})
+            // qtdRegistros.then((noBanco) => {
+            //     const dados = {
+            //         retorno: {
+            //             achado: noBanco.retorno
+            //         }
+            //     }
+            //     console.log("ACHADO??" + dados.retorno.achado)
+            //     if(dados.retorno.achado){
+            //         console.log('***JÁ FOI INSERIDO***')
+            //     }
+            //     else{
+            //         console.log('***AINDA NÃO INSERIDO***')
+                    queriesCity.findOrCreat(response)
+                // }
+                res.render('index', {data: response.dados})
+            // }).catch((err) => {
+            //     console.log("Erro ao confirmar se uma cidade já foi cadastrada: " + err)
+            // })
+
+            
         }).catch((err) => { //Em caso de erro...
             if(err){
                 console.error(err) //mostre o erro

@@ -19,24 +19,52 @@ exports.create = (dadosCidade) => {
 
 // Retrieve all Tutorials from the database.
 exports.findAll = (nome) => {
-    console.log("CHEGOU AQUIIIIIII")
-    Cidade.count({ where: {nome: nome} })
-    .then(qtd => {
-        console.log('QUANTIDADE DE REGISTROS: ' + qtd)
-        return qtd
-    })
-
-    // Cidade.findAll({where: {nome: nome}})
-    // .then(data => {
-    //     console.log(data)
-    //     if(data.length > 0){
-    //         console.log("JÁ ESTÁ NO BANCO")
-    //         return true
-    //     }
-    //     else{
-    //         console.log("NOVO REGISTRO")
-    //         return false
-    //     }
+    // console.log("CHEGOU AQUIIIIIII")
+    // Cidade.count({ where: {nome: nome} })
+    // .then(qtd => {
+    //     console.log('QUANTIDADE DE REGISTROS: ' + qtd)
+    //     return qtd
     // })
 
+    var achou = false
+
+    retorno = Cidade.findAll({where: {nome: nome}})
+    .then(data => {
+        console.log("Returned data: ")
+        console.log(data.cidade)
+        console.log("-------------------------------")
+        if(data != []){
+            console.log("JÁ ESTÁ NO BANCO")
+            achou = true
+        }
+        else{
+            console.log("NOVO REGISTRO")
+            achou = false
+        }
+        return achou
+    }).catch((err) => {
+        console.log("Erro ao buscar cidade: " + err)
+    })
+
+    return retorno
+
 };
+
+exports.findOrCreat = async (dadosCidade) => {
+    const [cidade, created] = await Cidade.findOrCreate({
+        where: { nome: dadosCidade.dados.nome },
+        defaults: {  
+            pais: dadosCidade.dados.pais, 
+            temperatura: dadosCidade.dados.temperatura, 
+            umidade: dadosCidade.dados.umidade, 
+            climaprincipal: dadosCidade.dados.climaprincipal,
+            climadescricao: dadosCidade.dados.climadescricao,
+            numbuscas: 1
+        }
+    });
+    console.log(cidade.nome); // 'sdepold'
+    console.log(cidade.pais); // This may or may not be 'Technical Lead JavaScript'
+    console.log(cidade.temperatura); // This may or may not be 'Technical Lead JavaScript'
+
+    console.log(created); // The boolean indicating whether this instance was just created
+}
