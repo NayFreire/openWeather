@@ -20,16 +20,40 @@ exports.create = (dadosCidade) => {
 // Retrieve all Tutorials from the database.
 exports.findAll = async () => {
     console.log('CHEGOU EM')
-    var cidades = await Cidade.findAll({order: [['numbuscas', 'DESC']], limit: 5})
+    var response = []
+    await Cidade.findAll({order: [['numbuscas', 'DESC']], limit: 5})
     .then(data => {
-        data.map((d) => {
-            console.log(d.get())
+        response = data.map((d) => {
+            return {
+                nome: d.get().nome
+            }
         })
-        return data
+
+        console.log(response)
+        // return response
     }).catch((err) => {
         console.log("Erro ao buscar cidade: " + err)
     })
-    return cidades
+    return response
+};
+
+exports.findLastOnes = async () => {
+    console.log('CHEGOU EM')
+    var response = []
+    await Cidade.findAll({order: [['updatedAt', 'DESC']], limit: 5})
+    .then(data => {
+        response = data.map((d) => {
+            return {
+                nome: d.get().nome
+            }
+        })
+
+        console.log(response)
+        // return response
+    }).catch((err) => {
+        console.log("Erro ao buscar cidade: " + err)
+    })
+    return response
 };
 
 exports.findOrCreat = async (dadosCidade) => {
