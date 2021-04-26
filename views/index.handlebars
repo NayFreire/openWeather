@@ -31,7 +31,7 @@
                     {{#if data.encontrada}}
                         {{#data}}
                             <div>
-                                <h4 style="text-align: center;">{{cidade}}</h4>
+                                <h4 style="text-align: center;">{{nome}}</h4>
                             </div>
                             <div class="cityData">
                                 <label class="atributo" for="">País: </label><br>
@@ -46,12 +46,8 @@
                                 <label for="">{{umidade}}%</label><br>
                             </div>
                             <div class="cityData">
-                                <label class="atributo" for="">Clima principal: </label><br>
-                                <label for="">{{climaPrincipal}}</label><br>
-                            </div>
-                            <div class="cityData">
                                 <label class="atributo" for="">Descrição do clima: </label><br>
-                                <label for="">{{climaDesc}}</label><br>
+                                <label for="">{{climadescricao}}</label><br>
                             </div>
                         {{/data}}
                     {{else}}

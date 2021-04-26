@@ -5,9 +5,7 @@ const handlebars = require('express-handlebars')
 const db = require('./models')
 const createCity = require('./controllers/cidade.controller')
 
-db.sequelize.sync({force: true}).then(() => {
-    console.log("Drop and re-sync db")
-})
+db.sequelize.sync()
 
 //Configurando o template engine do express
 app.engine('handlebars', handlebars({defaultLayout: 'main'}))
@@ -34,12 +32,13 @@ app.post('/', (req, res) => {
             response = {
                 dados: {
                     encontrada: true,
-                    cidade: resposta.data.name,
+                    nome: resposta.data.name,
                     pais: resposta.data.sys.country,
                     temperatura: resposta.data.main.temp,
                     umidade: resposta.data.main.humidity,
-                    climaPrincipal: resposta.data.weather[0].main,
-                    climaDesc: resposta.data.weather[0].description
+                    climaprincipal: resposta.data.weather[0].main,
+                    climadescricao: resposta.data.weather[0].description,
+                    numbuscas: 1
                 }
             }
     
