@@ -58,8 +58,7 @@ exports.findOrCreat = async (dadosCidade) => {
             temperatura: dadosCidade.dados.temperatura, 
             umidade: dadosCidade.dados.umidade, 
             climaprincipal: dadosCidade.dados.climaprincipal,
-            climadescricao: dadosCidade.dados.climadescricao,
-            numbuscas: dadosCidade.dados.numbuscas
+            climadescricao: dadosCidade.dados.climadescricao
         }
     });
     console.log(cidade.nome); // 'sdepold'
@@ -68,9 +67,19 @@ exports.findOrCreat = async (dadosCidade) => {
     console.log(cidade.numbuscas)
 
     console.log(created); // The boolean indicating whether this instance was just created
-    if(!created){
-        await Cidade.update({ numbuscas: dadosCidade.dados.numbuscas + 1 }, {
+    if(created){
+        await Cidade.update({ numbuscas: 1 }, {
             where: {nome: dadosCidade.dados.nome}
         });
+    }
+    else{
+        const city = await Cidade.findOne({ where: { nome: dadosCidade.dados.nome } });
+            if (city === null) {
+            console.log('Erro: Cidade não encontrada');
+            } else {
+                await Cidade.update({ numbuscas:  city.numbuscas + 1}, {
+                    where: {nome: dadosCidade.dados.nome}
+                });
+            }    
     }
 }

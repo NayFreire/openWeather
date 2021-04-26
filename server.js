@@ -39,7 +39,7 @@ app.post('/', (req, res) => {
                     umidade: resposta.data.main.humidity,
                     climaprincipal: resposta.data.weather[0].main,
                     climadescricao: resposta.data.weather[0].description,
-                    numbuscas: 1
+                    // numbuscas: 1
                 }
             }
     
