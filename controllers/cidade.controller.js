@@ -18,6 +18,25 @@ exports.create = (dadosCidade) => {
 };
 
 // Retrieve all Tutorials from the database.
-// exports.findAll = (req, res) => {
-    
-// };
+exports.findAll = (nome) => {
+    console.log("CHEGOU AQUIIIIIII")
+    Cidade.count({ where: {nome: nome} })
+    .then(qtd => {
+        console.log('QUANTIDADE DE REGISTROS: ' + qtd)
+        return qtd
+    })
+
+    // Cidade.findAll({where: {nome: nome}})
+    // .then(data => {
+    //     console.log(data)
+    //     if(data.length > 0){
+    //         console.log("JÁ ESTÁ NO BANCO")
+    //         return true
+    //     }
+    //     else{
+    //         console.log("NOVO REGISTRO")
+    //         return false
+    //     }
+    // })
+
+};

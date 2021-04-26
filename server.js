@@ -3,7 +3,7 @@ const app = express()
 const dados = require('./index') //Importando os dados do index.js
 const handlebars = require('express-handlebars')
 const db = require('./models')
-const createCity = require('./controllers/cidade.controller')
+const queriesCity = require('./controllers/cidade.controller')
 
 db.sequelize.sync()
 
@@ -21,9 +21,10 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     var response = []
-    console.log(req.body.cityName)
+    // console.log(req.body.cityName)
     retornoApi = dados.getData(req.body.cityName)
-    console.log(retornoApi)
+
+    // console.log(retornoApi)
     if(retornoApi == 0){
         res.render('index')
     }
@@ -43,8 +44,18 @@ app.post('/', (req, res) => {
             }
     
             // return res.status(200).send(response)
-            console.log(response)
-            createCity.create(response)
+            // console.log(response)
+            console.log("Nome da cidade: " + response.dados.nome)
+            qtdRegistros = queriesCity.findAll(response.dados.nome)
+            console.log('FOI PESQUISADO?????' + qtdRegistros)
+
+            if(qtdRegistros > 0){
+                console.log('***PESQUISADO***')
+            }
+            else{
+                console.log('***NÃO PESQUISADO***')
+                queriesCity.create(response)
+            }
             res.render('index', {data: response.dados})
         }).catch((err) => { //Em caso de erro...
             if(err){
