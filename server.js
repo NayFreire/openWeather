@@ -2,6 +2,12 @@ const express = require('express')
 const app = express()
 const dados = require('./index') //Importando os dados do index.js
 const handlebars = require('express-handlebars')
+const db = require('./models')
+const createCity = require('./controllers/cidade.controller')
+
+db.sequelize.sync({force: true}).then(() => {
+    console.log("Drop and re-sync db")
+})
 
 //Configurando o template engine do express
 app.engine('handlebars', handlebars({defaultLayout: 'main'}))
@@ -12,7 +18,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static("."));
 
 app.get('/', (req, res) => {
-    res.render('index', {data: response})
+    res.render('index', /*{data: response}*/)
 })
 
 app.post('/', (req, res) => {
@@ -39,6 +45,7 @@ app.post('/', (req, res) => {
     
             // return res.status(200).send(response)
             console.log(response)
+            createCity.create(response)
             res.render('index', {data: response.dados})
         }).catch((err) => { //Em caso de erro...
             if(err){
