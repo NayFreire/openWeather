@@ -10,18 +10,11 @@
 
 {{!-- <h1>Temperatura Aqui</h1> --}}
 <div class="container main">
-    <div class="col-md-6 historico">
-        <h2>historico</h2>
-        {{#data}}
-        <label for="">{{dados.cidade}}</label>
-        {{/data}}
-    </div>
     <div class="col-md-6 busca">
-        {{!-- <h2>busca</h2> --}}
         <div id="divBuscaCidade">
             <form action="/" method="post">
                 <div id="divLabelBusca" class="divCidade">
-                <h3 style="text-align: center;">Saiba mais sobre o clima de várias cidades</h3>
+                    <h3 style="text-align: center;">Saiba mais sobre o clima de várias cidades</h3>
                 </div>
                 <div id="divInputBusca" class="divCidade">
                     <input id="inputBusca" type="text" placeholder="Nome da cidade" name="cityName">
@@ -31,7 +24,7 @@
                     {{#if data.encontrada}}
                         {{#data}}
                             <div>
-                                <h4 style="text-align: center;">{{cidade}}</h4>
+                                <h4 style="text-align: center;">{{nome}}</h4>
                             </div>
                             <div class="cityData">
                                 <label class="atributo" for="">País: </label><br>
@@ -46,12 +39,8 @@
                                 <label for="">{{umidade}}%</label><br>
                             </div>
                             <div class="cityData">
-                                <label class="atributo" for="">Clima principal: </label><br>
-                                <label for="">{{climaPrincipal}}</label><br>
-                            </div>
-                            <div class="cityData">
                                 <label class="atributo" for="">Descrição do clima: </label><br>
-                                <label for="">{{climaDesc}}</label><br>
+                                <label for="">{{climadescricao}}</label><br>
                             </div>
                         {{/data}}
                     {{else}}
@@ -59,6 +48,24 @@
                     {{/if}}
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="col-md-6 historico d-flex container">        
+        <div class="col-sm-6">
+            <h3 style="text-align: center;">Cidades mais pesquisadas</h3>
+            <div>
+                {{#top5}}
+                <label class="labelH">{{nome}}</label><br>
+                {{/top5}}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h3 style="text-align: center;">Histórico de pesquisa</h3>
+            <div>
+                {{#hist}}
+                <label class="labelH">{{nome}}</label><br>
+                {{/hist}}
+            </div>
         </div>
     </div>
 </div>

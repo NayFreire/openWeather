@@ -14,7 +14,7 @@ exports.getData = (cityName) => {
         return 0
     }
     // cityName = 'Ouro Fino'
-    console.log('cityName: ' + cityName)
+    // console.log('cityName: ' + cityName)
     var city = cityName.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
     
     function cities() {
