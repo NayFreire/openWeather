@@ -1,37 +1,42 @@
-html{
+body{
     /* background-color: yellowgreen; */
     /* padding: 50px; */
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center !important;
+    justify-content: center !important;
 }
 .main{
+    margin-top: 100px;
     display: flex;
     height: 400px;
     align-items: center;
     justify-content: center;
-    background-color: rgb(35, 140, 201);
+    background-color: rgb(173, 169, 169);
+    border-radius: 10px;
 }
 
 .historico{
-    height: 350px;
-    background-color: rgb(189, 59, 59);
-    padding: 30px;
+    /* height: 350px; */
+    background-color: rgb(75, 184, 228);
+    padding: 140px 20px !important;
+    /* min-height: 500px !important; */
+    max-height: 350px;
+    margin-left: 10px !important;
+    
 }
 
 .busca{
     height: 350px;
-    background-color: violet;
-    margin-left: 10px;
-    padding: 30px;
+    background-color: #bd505b;
 }
 
 #divBuscaCidade{
-    background-color: burlywood;
+    padding: 30px 10px;
+    background-color: rgba(148, 208, 231, 0);
+    min-height: 400px !important;
 }
 
 .divCidade{
-    background-color: springgreen;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,6 +44,7 @@ html{
 
 #divLabelBusca{
     margin-bottom: 10px;
+    padding: 10px 30px;
 }
 
 #inputBusca{
@@ -67,4 +73,15 @@ html{
 .atributo{
     margin-right: 10px;
     font-weight: 600;
+}
+
+.col-md-6{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 300px !important;
+}
+
+.labelH{
+    text-align: center !important;
 }

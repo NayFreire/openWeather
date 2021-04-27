@@ -10,11 +10,11 @@
 
 {{!-- <h1>Temperatura Aqui</h1> --}}
 <div class="container main">
-    <div class="col-md-6 container busca">
+    <div class="col-md-6 busca">
         <div id="divBuscaCidade">
             <form action="/" method="post">
                 <div id="divLabelBusca" class="divCidade">
-                <h3 style="text-align: center;">Saiba mais sobre o clima de várias cidades</h3>
+                    <h3 style="text-align: center;">Saiba mais sobre o clima de várias cidades</h3>
                 </div>
                 <div id="divInputBusca" class="divCidade">
                     <input id="inputBusca" type="text" placeholder="Nome da cidade" name="cityName">
@@ -50,18 +50,22 @@
             </form>
         </div>
     </div>
-    <div class="col-md-6 historico d-flex">        
+    <div class="col-md-6 historico d-flex container">        
         <div class="col-sm-6">
-            <h3>Cidades mais pesquisadas</h3>
-            {{#top5}}
-            <label for="">{{nome}}</label><br>
-            {{/top5}}
+            <h3 style="text-align: center;">Cidades mais pesquisadas</h3>
+            <div>
+                {{#top5}}
+                <label class="labelH">{{nome}}</label><br>
+                {{/top5}}
+            </div>
         </div>
         <div class="col-sm-6">
-            <h3>Histórico de pesquisa</h3>
-            {{#hist}}
-            <label for="">{{nome}}</label><br>
-            {{/hist}}
+            <h3 style="text-align: center;">Histórico de pesquisa</h3>
+            <div>
+                {{#hist}}
+                <label class="labelH">{{nome}}</label><br>
+                {{/hist}}
+            </div>
         </div>
     </div>
 </div>
