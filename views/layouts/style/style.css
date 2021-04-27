@@ -7,17 +7,20 @@ html{
 }
 .main{
     display: flex;
+    height: 400px;
     align-items: center;
     justify-content: center;
-    background-color: springgreen;
+    background-color: rgb(35, 140, 201);
 }
 
 .historico{
+    height: 350px;
     background-color: rgb(189, 59, 59);
     padding: 30px;
 }
 
 .busca{
+    height: 350px;
     background-color: violet;
     margin-left: 10px;
     padding: 30px;

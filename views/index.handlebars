@@ -10,22 +10,7 @@
 
 {{!-- <h1>Temperatura Aqui</h1> --}}
 <div class="container main">
-    <div class="col-md-6 historico container d-flex">
-        <div class="col-sm-6">
-            <h3>Cidades mais pesquisadas</h3>
-            {{#top5}}
-            <label for="">{{nome}}</label><br>
-            {{/top5}}
-        </div>
-        <div class="col-sm-6">
-            <h3>Histórico de pesquisa</h3>
-            {{#hist}}
-            <label for="">{{nome}}</label><br>
-            {{/hist}}
-        </div>
-    </div>
-    <div class="col-md-6 busca">
-        {{!-- <h2>busca</h2> --}}
+    <div class="col-md-6 container busca">
         <div id="divBuscaCidade">
             <form action="/" method="post">
                 <div id="divLabelBusca" class="divCidade">
@@ -63,6 +48,20 @@
                     {{/if}}
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="col-md-6 historico d-flex">        
+        <div class="col-sm-6">
+            <h3>Cidades mais pesquisadas</h3>
+            {{#top5}}
+            <label for="">{{nome}}</label><br>
+            {{/top5}}
+        </div>
+        <div class="col-sm-6">
+            <h3>Histórico de pesquisa</h3>
+            {{#hist}}
+            <label for="">{{nome}}</label><br>
+            {{/hist}}
         </div>
     </div>
 </div>
